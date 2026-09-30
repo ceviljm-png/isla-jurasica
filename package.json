@@ -1,0 +1,10 @@
+{
+  "name": "isla-jurasica",
+  "version": "1.0.0",
+  "description": "Juego de tablero de comprar dinosaurios, instalable en Android y macOS (PWA)",
+  "private": true,
+  "scripts": {
+    "test": "node test/sim.js",
+    "start": "python3 serve.py"
+  }
+}
