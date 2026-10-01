@@ -161,7 +161,7 @@
       const s = {
         version: VERSION, mode: M, level: LEVELS[level] ? level : 'normal',
         players: players.map((p) => ({ name: String(p.name || 'Jugador').slice(0, 14), ai: !!p.ai, money: MODES[M].start,
-          pos: 0, jail: false, tries: 0, passes: [], out: false })),
+          pos: 0, jail: false, tries: 0, passes: [], out: false, dev: p.dev || null })),
         owner: B.sq.map((q) => ownable(q) ? -1 : null), houses: B.sq.map(() => 0), mort: B.sq.map(() => false),
         turn: 0, round: 1, phase: 'roll', dice: [0, 0], doubles: 0, again: false,
         decks: { exp: shuffle(DECKS.exp.map((_, i) => i)), inc: shuffle(DECKS.inc.map((_, i) => i)) },
@@ -179,7 +179,12 @@
     /* ---------- utilidades ---------- */
     nm(p) { return '<b>' + esc(this.s.players[p].name) + '</b>'; }
     log(t) { this.s.log.push(t); if (this.s.log.length > 80) this.s.log.shift(); }
-    fx(e) { this.s.fx.push(e); if (this.s.fx.length > 40) this.s.fx.shift(); }
+    /* Cola de efectos para animar; n numera cada efecto para no repetirlo en otros dispositivos */
+    fx(e) {
+      e.n = this.s.fxN = (this.s.fxN || 0) + 1;
+      this.s.fx.push(e);
+      if (this.s.fx.length > 40) this.s.fx.shift();
+    }
     sq(i) { return this.B.sq[i]; }
     alive() { return this.s.players.map((_, i) => i).filter((i) => !this.s.players[i].out); }
     /* Quién tiene que decidir ahora */

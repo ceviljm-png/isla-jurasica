@@ -124,6 +124,36 @@ svg.fig { fill: currentColor; }
   color: #fff; font-size: 10px; font-weight: 800; line-height: 1;
 }
 
+/* ---------- red ---------- */
+.netrow { margin-top: 0; }
+.field { display: grid; gap: 4px; margin-top: 10px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.field input {
+  height: 46px; padding: 0 12px;
+  border: 1.5px solid var(--line); border-radius: 10px;
+  background: #fff; color: var(--ink);
+  font-size: 17px;
+  user-select: text; -webkit-user-select: text;
+}
+.field .codein { font-size: 26px; font-weight: 800; letter-spacing: .35em; text-transform: uppercase; text-align: center; }
+.roomcode {
+  margin: 4px auto 0; padding: 10px 22px;
+  border: 2px dashed var(--amber); border-radius: 14px;
+  font: 800 44px/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .25em; text-indent: .25em;
+  color: var(--amber);
+  user-select: text; -webkit-user-select: text;
+}
+.tc { text-align: center; }
+.lslot { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 12px; background: rgba(0, 0, 0, .22); }
+.lslot .tokdot { width: 24px; height: 24px; font-size: 12px; }
+.lname { flex: 1; min-width: 0; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ltag { color: var(--soft); font-size: 13px; }
+.lslot .iconbtn { width: 32px; height: 32px; font-size: 15px; }
+.netbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+  padding: 10px 16px max(10px, env(safe-area-inset-bottom));
+  background: #7d1d12; color: #fff; text-align: center; font-size: 14px; font-weight: 600;
+}
+
 /* ---------- partida ---------- */
 .game {
   min-height: 100vh; min-height: 100dvh;

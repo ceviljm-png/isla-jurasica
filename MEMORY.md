@@ -10,10 +10,20 @@ Decisiones de producto y estado del proyecto. Es un archivo público: sin datos 
   Allosaurus · Carnotaurus, Ankylosaurus, Pteranodon · Dilophosaurus, Giganotosaurus, Indoraptor · Brachiosaurus,
   Stegosaurus, Spinosaurus · Mosasaurus, Indominus rex, Triceratops · Velociraptor, Tyrannosaurus rex.
 - Entran dinosaurios reales y los dos **híbridos de ficción** (Indoraptor, Indominus rex), en la parte cara.
-- Se juega **contra la máquina y pasando el dispositivo**, de 2 a 4 jugadores, sin partidas en línea.
+- Se juega **contra la máquina y pasando el dispositivo**, de 2 a 4 jugadores, o **en red** con un móvil por persona.
+- Red: conexión directa entre dispositivos (WebRTC con PeerJS), sin cuentas ni servidor propio. Una persona por
+  dispositivo; los huecos se pueden rellenar con máquinas, que lleva el dispositivo que crea la sala.
 - Al empezar se elige el tablero: **Clásica** (40 casillas, hasta la ruina), **Rápida** (40 casillas, 2 dinosaurios
   de salida, 20 rondas y gana quien más vale) o **Reducida** (24 casillas, 12 dinosaurios, sueldo y dinero inicial menores).
 - Tres niveles de máquina (fácil, normal, difícil).
+
+## Estado
+
+- Reglas comprobadas con `npm test` (partidas máquina contra máquina en los tres tableros y niveles).
+- Partidas en red comprobadas con tres navegadores a la vez y un transporte simulado: sala, partida, tratos entre
+  personas, desconexión, recarga del invitado y del anfitrión, y la máquina jugando por un ausente. La conexión WebRTC
+  real no se ha podido probar en el equipo de desarrollo (una VPN la bloquea): falta probarla con móviles.
+- En red no hay servidor TURN: en redes muy cerradas (algunas de datos móviles) la conexión directa puede fallar.
 
 ## Vocabulario
 
@@ -40,3 +50,4 @@ Decisiones de producto y estado del proyecto. Es un archivo público: sin datos 
 
 - 2026-09-30 · Primera versión: tres tableros, subastas, hipotecas, tratos, cartas, animaciones, PWA sin conexión.
 - 2026-09-30 · Publicado en GitHub Pages: https://ceviljm-png.github.io/isla-jurasica/
+- 2026-10-01 · Partidas en red: salas con código, reconexión, la máquina puede jugar por quien se va.

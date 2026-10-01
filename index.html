@@ -154,8 +154,23 @@
     <p class="muted">Las personas se pasan el dispositivo. Todo el dinero es visible, como en la mesa.</p>
 
     <button id="start" class="btn primary big">Empezar</button>
+
+    <h2>En red, cada uno con su móvil</h2>
+    <p class="muted">Quien crea la sala elige arriba el tablero y el nivel de las máquinas. Los demás se unen con el código.</p>
+    <button id="net-back" class="btn primary big" hidden>Volver a la sala</button>
+    <div class="row netrow">
+      <button id="net-host" class="btn">📡 Crear sala</button>
+      <button id="net-join" class="btn">🔑 Unirse</button>
+    </div>
+    <p id="net-help" class="muted" hidden>No se ha podido cargar el módulo de red: comprueba la conexión y recarga la página.</p>
+
     <button id="rules" class="btn ghost wide">Cómo se juega</button>
   </div>
+</main>
+
+<!-- Sala de espera en red -->
+<main id="lobby" class="menu" hidden>
+  <div class="menu-card" id="lobbycard"></div>
 </main>
 
 <!-- Partida -->
@@ -178,8 +193,11 @@
   </section>
 </div>
 
+<div id="netbar" class="netbar" role="status" hidden></div>
 <div id="toasts" class="toasts" aria-live="polite"></div>
 
+<script src="js/vendor/peerjs.min.js"></script>
+<script src="js/net.js"></script>
 <script src="js/engine.js"></script>
 <script src="js/ai.js"></script>
 <script src="js/ui.js"></script>

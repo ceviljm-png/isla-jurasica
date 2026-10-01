@@ -6,6 +6,7 @@ Juego de tablero de comprar dinosaurios, construir recintos y arruinar a los riv
 Es una app web instalable (PWA): funciona igual en Android, en macOS y en cualquier navegador, y se juega sin conexión.
 
 - De 2 a 4 jugadores: personas que se pasan el dispositivo y rivales que lleva la máquina (fácil, normal o difícil).
+- **En red**: cada persona con su móvil. Uno crea una sala y los demás se unen con el código de 4 letras (o con el enlace).
 - Tres tableros: **Clásica** (40 casillas, 22 dinosaurios), **Rápida** (el mismo tablero, 20 rondas) y **Reducida** (24 casillas, 12 dinosaurios).
 - Los dinosaurios van de menos a más populares: el Compsognathus es el más barato y el Tyrannosaurus rex, el más caro.
 
