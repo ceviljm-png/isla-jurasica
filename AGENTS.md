@@ -12,12 +12,26 @@ solo dispositivo (pasándolo) o **en red**, cada persona con el suyo, mediante s
 - Publicado en: https://ceviljm-png.github.io/isla-jurasica/
 - Repositorio: https://github.com/ceviljm-png/isla-jurasica (rama `main`, servida con GitHub Pages)
 
+## Desarrollo guiado por specs (SDD)
+
+El proyecto se desarrolla con Spec-Driven Development (skill `sdd` en `.claude/skills/sdd/`).
+
+- Antes de tocar código, lee `docs/constitution.md` y la spec del área afectada (`specs/NNN-*/`).
+- Lo que ya existía antes del kit se está documentando con `/sdd-adopt`: specs con «Estado: implementada»
+  que describen el comportamiento actual. Si un área aún no tiene spec, documéntala antes de cambiarla.
+- Cambiar algo que ya tiene spec: `/sdd-change NNN-area …` (primero la spec, luego el plan y las tareas, al final el código).
+- Funcionalidad nueva con entidad: flujo completo con el agente `coordinator` (`claude --agent coordinator`).
+- Cambios pequeños que no merecen spec: `/feature <descripción>`.
+- Al terminar cada fase, actualiza `MEMORY.md`.
+
 ## Comandos
 
 | Para | Comando |
 |---|---|
-| Comprobar las reglas (partidas máquina contra máquina) | `npm test` — equivale a `node test/sim.js [partidas]` |
+| Comprobar las reglas | `npm test` — partidas máquina contra máquina (`node test/sim.js [partidas]`) y después los tests de cada spec (`node --test test/*.test.js`) |
 | Servir el juego en local, puerto 8140 | `npm start` — equivale a `python3 serve.py [puerto]` |
+
+`npm test` es el único comando de tests: todos los agentes lo usan, y está prohibido avanzar con él en rojo.
 
 No hay paso de compilación ni empaquetador. La única dependencia es PeerJS, copiada tal cual en `js/vendor/`
 (ver más abajo). Node solo para las pruebas y Python 3 solo para el servidor local.
@@ -36,6 +50,8 @@ sw.js                   Service worker: red primero, copia guardada si no hay re
 manifest.webmanifest    Datos de instalación de la PWA
 icons/                  Icono (SVG de origen y PNG de 192 y 512 px)
 test/sim.js             Partidas completas con comprobación de invariantes
+test/NNN-*.test.js      Tests de caracterización de cada spec (node:test, sin dependencias)
+test/mesa.js            Ayuda de esos tests: prepara a mano el estado de una partida
 serve.py                Servidor estático para desarrollo
 ```
 
@@ -113,8 +129,9 @@ en Node se exportan con `module.exports`.
 
 ## Antes de dar algo por terminado
 
-1. `npm test` termina en `OK`.
-2. Probado a mano en el navegador el flujo afectado, sin errores en la consola.
+1. `npm test` termina sin fallos (`OK` de la simulación y ningún test en rojo).
+2. Probado a mano en el navegador el flujo afectado, sin errores en la consola (con el MCP de Chrome DevTools
+   si está disponible), a 375 px y en escritorio.
 3. Si se toca la red: probar con al menos dos dispositivos (o dos navegadores con almacenamiento separado,
    por ejemplo `127.0.0.1` y `localhost`) crear sala, unirse, jugar, recargar el invitado y recargar el anfitrión.
 4. Si cambian archivos que la app necesita sin conexión, están en `FILES` de `sw.js` (y sube `CACHE`).

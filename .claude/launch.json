@@ -1,0 +1,10 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "isla-jurasica",
+      "url": "http://localhost:8140",
+      "port": 8140
+    }
+  ]
+}

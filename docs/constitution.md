@@ -1,13 +1,17 @@
 # Constitución — Isla Jurásica
 
-Estado: PENDIENTE
+Estado: aprobada (2026-10-11)
 
-Este archivo todavía no existe de verdad. Ejecuta `/sdd-constitution` para que el agente
-lea el proyecto y te proponga 6 principios innegociables (máx. 15 líneas) que cubran:
-simplicidad del stack, relación entre spec y código, separación lógica/interfaz,
-política de tests, protección de los datos del usuario e idioma del código y los textos.
-
-Si el proyecto YA tenía código antes de instalar el kit, usa `/sdd-adopt` en su lugar:
-documenta lo existente y propone la constitución a partir de cómo está hecho.
-
-Ningún agente debe implementar nada mientras este archivo esté PENDIENTE.
+1. **Sin compilación ni dependencias.** HTML, CSS y JavaScript clásico que funciona con `file://`; la única
+   librería es PeerJS, copiada sin modificar en `js/vendor/`. Nada de empaquetadores, frameworks ni servidor propio.
+2. **La spec manda.** Todo cambio de comportamiento empieza por su spec en `specs/`; lo que no está en una spec
+   no se implementa. Antes de cambiar un área sin spec, se documenta como está.
+3. **Las reglas viven en el motor.** `engine.js` y `ai.js` no tocan el DOM y corren en Node; toda regla nueva va
+   ahí. La interfaz solo dibuja y manda órdenes, y en red solo el anfitrión ejecuta el motor.
+4. **Tests en verde, siempre.** `npm test` termina en OK antes de dar algo por hecho. Cada regla nueva o
+   cambiada lleva un test que fije su resultado, no solo los invariantes.
+5. **Nada que llegue de fuera es de fiar.** Los nombres pasan por `esc()`; en red, anfitrión e invitado validan
+   todo lo que reciben. Sin cuentas ni datos personales: todo se guarda en `localStorage` (siempre con
+   `try/catch`), y si cambia la forma del estado guardado se mantiene la compatibilidad o se sube `VERSION`.
+6. **Español y nombre propio.** Textos, comentarios y commits en español. Nombre, arte y vocabulario propios
+   (ámbar, zonas, recintos), sin marcas ajenas. Móvil primero: todo cambio visual se prueba a 375 px.

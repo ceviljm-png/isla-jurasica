@@ -4,7 +4,7 @@
   "description": "Juego de tablero de comprar dinosaurios, instalable en Android y macOS (PWA)",
   "private": true,
   "scripts": {
-    "test": "node test/sim.js",
+    "test": "node test/sim.js && node --test --test-timeout=20000 test/*.test.js",
     "start": "python3 serve.py"
   }
 }

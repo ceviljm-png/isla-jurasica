@@ -236,11 +236,13 @@
     }
 
     /* ---------- movimiento ---------- */
+    /* Un dado al azar. Los tests lo sustituyen en su partida para fijar las tiradas */
+    dado() { return die(); }
     roll() {
       const s = this.s;
       if (s.phase !== 'roll') return false;
       const p = s.turn, pl = s.players[p];
-      const a = die(), b = die(), dbl = a === b;
+      const a = this.dado(), b = this.dado(), dbl = a === b;
       s.dice = [a, b];
       this.fx({ k: 'dice', p, a, b });
       if (pl.jail) {
@@ -253,7 +255,7 @@
         }
         if (++pl.tries >= 3) {
           pl.jail = false; pl.tries = 0;
-          this.log(`${this.nm(p)} no saca dobles a la tercera: paga ${JAIL_FEE} y sale de la cuarentena.`);
+          this.log(`${this.nm(p)} no saca dobles a la tercera: tiene que pagar ${JAIL_FEE} para salir de la cuarentena.`);
           this.charge(p, JAIL_FEE, -1, 'move');
           return true;
         }
